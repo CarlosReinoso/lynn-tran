@@ -7,6 +7,9 @@ const lightTheme = createTheme({
     background: {
       default: "#363a16",
     },
+    text: {
+      primary: "white",
+    },
   },
 
   typography: {
