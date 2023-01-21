@@ -1,11 +1,16 @@
-import { Box, Grid, Stack } from "@mui/material";
+import { Grid } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import bioPhoto from "../../public/img/about/biophoto2.jpg";
+import CalendyButton from "./CalendyButton";
 
-const About = () => {
-  return (
-    <Grid container spacing={2}>
+const Offer = ({ imagePositionRight }: { imagePositionRight?: boolean }) => (
+  <>
+    <Grid
+      container
+      spacing={2}
+      sx={{ flexDirection: `${imagePositionRight ? "row-reverse" : "row"}` }}
+    >
       <Grid
         item
         xs={12}
@@ -33,7 +38,17 @@ const About = () => {
         </div>
       </Grid>
     </Grid>
+  </>
+);
+
+const Offers = () => {
+  return (
+    <>
+      <Offer imagePositionRight />
+      <Offer />
+      <CalendyButton />
+    </>
   );
 };
 
-export default About;
+export default Offers;

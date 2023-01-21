@@ -1,45 +1,44 @@
-import { Typography } from "@mui/material";
+import { heroVideoUrl } from "@/constants";
+import { Box, Stack, SxProps, Typography } from "@mui/material";
 import React from "react";
 
-const Hero = () => {
+const Hero = ({ sx }: { sx: SxProps }) => {
   return (
-    <>
+    <Box sx={sx}>
       <video
         autoPlay
         loop
         muted
         style={{
+          position: "absolute",
           width: "100%",
-          height: "100%",
-          background: "black",
+          backgroundColor: "black",
           opacity: 0.5,
         }}
       >
-        <source src="https://storage.googleapis.com/sacko-backend.appspot.com/YouCut_20211107_183543938.mp4" />
+        <source src={heroVideoUrl} />
       </video>
-      <Typography
-        variant="h1"
+      <Stack
         sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
           textAlign: "center",
-          position: "absolute",
-          top: "50%",
-          right: "50%",
+          opacity: 0.99,
+          textShadow: "1px 1px 2px black",
         }}
       >
-        Experiential Medicine
+        <Typography variant="h1">Experiential Medicine</Typography>
+        <Typography variant="h3">Healing through holding</Typography>
+      </Stack>
+      <Typography textAlign="right" sx={{ mr: 2, opacity: 0.99 }}>
+        Nush
       </Typography>
-      <Typography
-        variant="h3"
-        sx={{
-          textAlign: "center",
-          position: "absolute",
-          top: "50%",
-          right: "50%",
-        }}
-      >
-        Healing through holding
+      <Typography textAlign="right" sx={{ mr: 2, opacity: 0.99 }}>
+        Siama
       </Typography>
-    </>
+    </Box>
   );
 };
 
