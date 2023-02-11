@@ -1,9 +1,27 @@
 import { Box, Grid, Stack } from "@mui/material";
 import Image from "next/image";
-import React from "react";
-import bioPhoto from "../../public/img/about/biophoto2.jpg";
+import React, { useEffect } from "react";
+import bioPhoto from "../../public/img/about/biopic.jpg";
+import { createClient } from "next-sanity";
 
+const client = createClient({
+  projectId: "bbm1b0xb",
+  dataset: "production",
+  // apiVersion: "2023-02-10",
+  useCdn: true,
+});
 const About = () => {
+  useEffect(() => {
+    (async () => {
+      // const about = await client.fetch(`*[_type == "about"]`);
+      // console.log("🚀 ~ file: About.tsx:18 ~ about", about);
+      const test = fetch(
+        "https://63e68c3ec8839ccc285ab552.mockapi.io/mock"
+      ).then((res) => console.log(res.json()))
+      console.log("🚀 ~ file: About.tsx:21 ~ test", test);
+    })();
+  });
+
   return (
     <Grid container spacing={2}>
       <Grid

@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import bioPhoto from "../../public/img/about/biophoto2.jpg";
+import bioPhoto from "../../public/img/about/biopic.jpg"
 import CalendyButton from "./CalendyButton";
 
 const Offer = ({ imagePositionRight }: { imagePositionRight?: boolean }) => (
