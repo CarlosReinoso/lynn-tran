@@ -5,7 +5,7 @@ import bioPhoto from "../../public/img/about/biopic.jpg";
 import { createClient } from "next-sanity";
 
 const client = createClient({
-  projectId: "bbm1b0xb",
+  projectId: "0jfaimql",
   dataset: "production",
   useCdn: true,
 });
