@@ -1,85 +1,42 @@
-import { Grid } from "@mui/material";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import bioPhoto from "../../public/img/about/biopic.jpg";
-import { createClient } from "next-sanity";
+import { Box, Grid, Stack } from "@mui/material";
+import React from "react";
 import { PortableText } from "@portabletext/react";
-import urlBuilder from "@sanity/image-url";
-import { getImageDimensions } from "@sanity/asset-utils";
-import { projectId } from "@/constants";
+import { ISanity } from "@/pages";
+import SanityImage from "./SanityImage";
+import { imageShadow, centerItem, fontSizes } from "@/styles/theme";
 
-const client = createClient({
-  projectId,
-  dataset: "production",
-  useCdn: true,
-});
-
-// Barebones lazy-loaded image component
-const SampleImageComponent = ({ value, isInline }) => {
-  console.log("🚀 ~ file: About.tsx:18 ~ SampleImageComponent ~ value", value)
-  const { width, height } = getImageDimensions(value);
+const About = ({ sanity }: { sanity: ISanity }) => {
   return (
-    <img
-      src={urlBuilder({ projectId, dataset: "production" })
-        .image(value)
-        .width(isInline ? 100 : 800)
-        .fit("max")
-        .auto("format")
-        .url()}
-      alt={value.alt || " "}
-      loading="lazy"
-      style={{
-        // Display alongside text if image appears inside a block text span
-        display: isInline ? "inline-block" : "block",
-
-        // Avoid jumping around with aspect-ratio CSS property
-        aspectRatio: width / height,
-      }}
-    />
-  );
-};
-
-const components = {
-  types: {
-    image: SampleImageComponent,
-    // Any other custom types you have in your content
-    // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
-  },
-};
-
-const About = () => {
-  const [text, setText] = useState("");
-  useEffect(() => {
-    (async () => {
-      const test = await client.fetch(`*[_type == "homepage"]`);
-      console.log("🚀 ~ file: About.tsx:19 ~ test", test);
-      console.log("🚀 ~ file: About.tsx:19 ~ test", test[0]?.myRichTextExample);
-      setText(test);
-    })();
-  }, []);
-
-  return (
-    <Grid container spacing={2}>
-      <Grid
-        item
-        xs={12}
-        sm={12}
-        md={6}
+    <Stack direction={{ xs: "column", md: "row" }} spacing={4}>
+      <Box
         sx={{
-          display: { xs: "flex", md: "block" },
-          justifyContent: "center",
+          width: { xs: 1, md: 0.4, lg: 0.3 },
+          display: "flex",
+          justifyContent: { xs: "center", lg: "flex-start" },
           alignItems: "center",
         }}
       >
-        <Image src={bioPhoto} alt="about" width={300} height={400} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={6}>
-        <PortableText
-          value={text[0]?.myRichTextExample}
-          components={components}
+        <SanityImage
+          sx={{
+            boxShadow: imageShadow,
+            width: { xs: 0.6, sm: 0.7, md: 0.4, lg: 0.8 },
+          }}
+          sanity={sanity?.aboutMeImage}
         />
-      </Grid>
-    </Grid>
+      </Box>
+      <Box
+        sx={{
+          width: { xs: 1, lg: 0.7 },
+          fontSize: fontSizes,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "center",
+        }}
+      >
+        <PortableText value={sanity?.aboutMeDescription} />
+      </Box>
+    </Stack>
   );
 };
 

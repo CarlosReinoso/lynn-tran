@@ -1,53 +1,70 @@
-import { Grid } from "@mui/material";
-import Image from "next/image";
+import { calendyLink } from "@/constants";
+import { ISanity } from "@/pages";
+import { fontSizes, imageShadow } from "@/styles/theme";
+import { Box, Grid, Link, SxProps, Typography } from "@mui/material";
 import React from "react";
-import bioPhoto from "../../public/img/about/biopic.jpg"
 import CalendyButton from "./CalendyButton";
+import SanityImage from "./SanityImage";
 
-const Offer = ({ imagePositionRight }: { imagePositionRight?: boolean }) => (
+interface IOffer {
+  caption?: string;
+}
+const Offer = ({ sanity }: { sanity: IOffer }) => (
   <>
     <Grid
-      container
-      spacing={2}
-      sx={{ flexDirection: `${imagePositionRight ? "row-reverse" : "row"}` }}
+      item
+      xs={12}
+      sm={6}
+      md={3}
+      sx={{
+        display: { xs: "flex", md: "block" },
+        flexDirection: { xs: "column" },
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
-      <Grid
-        item
-        xs={12}
-        sm={12}
-        md={6}
-        sx={{
-          display: { xs: "flex", md: "block" },
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Image src={bioPhoto} alt="about" width={300} height={400} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={6}>
-        <div>
-          Lynn Tran Energy and body worker. Innerdance facilitator Space holder
-          Although there's nothing to technically "fix" or "heal" in this now
-          moment. Healing will go on and take place anyway. Naturally occuring
-          alongside "the pause" as we journey on. Moment to moment. Particularly
-          during the depths of intentional anchoring and courageous feeling.
-          This is because "the pause" is a portal for alchemical transformation.
-          A space we touch where magic pours through. and where the
-          recalibration of our every cell takes place. That is why there's
-          nothing to fix. And only everything to feel. It's all in the pause.
-        </div>
-      </Grid>
+      <Link href={calendyLink} underline="none" target="_blank">
+        <SanityImage
+          sanity={sanity}
+          sx={{
+            boxShadow: imageShadow,
+          }}
+        />
+        <Typography
+          sx={{
+            mt: 2,
+            textAlign: "center",
+            fontSize: fontSizes,
+          }}
+        >
+          {sanity?.caption}
+        </Typography>
+      </Link>
     </Grid>
   </>
 );
 
-const Offers = () => {
+const Offers = ({ sanity, sx }: { sanity: ISanity; sx: SxProps }) => {
   return (
-    <>
-      <Offer imagePositionRight />
-      <Offer />
-      <CalendyButton />
-    </>
+    <Box sx={sx}>
+      <Typography
+        sx={{
+          mt: 2,
+          fontSize: { xs: "1.1rem", sm: "1.5rem", md: "2rem", lg: "1.3rem" },
+          textDecoration: "underline",
+          textAlign: { xs: "center", lg: "left" },
+        }}
+      >
+        Journey With Me
+      </Typography>
+      <Grid container spacing={2} sx={{ my: { xs: 0 } }}>
+        <Offer sanity={sanity?.offer1} />
+        <Offer sanity={sanity?.offer2} />
+        <Offer sanity={sanity?.offer3} />
+        <Offer sanity={sanity?.offer4} />
+        <CalendyButton sx={{ margin: "auto", mt: 6 }} />
+      </Grid>
+    </Box>
   );
 };
 
