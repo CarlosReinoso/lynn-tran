@@ -5,4 +5,6 @@ const calendyLink = "https://calendly.com/iamlynntran";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 
-export { heroVideoUrl, calendyLink, projectId };
+const carlosEmailHref = "mailto:jrp.carlos@hotmail.com";
+
+export { heroVideoUrl, calendyLink, projectId, carlosEmailHref };

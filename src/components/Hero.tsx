@@ -1,7 +1,7 @@
-import { heroVideoUrl } from "@/constants";
+import { carlosEmailHref, heroVideoUrl } from "@/constants";
 import { ISanity } from "@/pages";
 import { Box, Link, Stack, SxProps, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 
 const HeroLink = ({ children, href }) => (
   <Link
@@ -45,6 +45,7 @@ const Hero = ({ sx, sanity }: { sx?: SxProps; sanity: ISanity }) => {
           pt: { xs: 1 },
         }}
       >
+        <HeroLink href={carlosEmailHref}>🧑‍💻 Carlos</HeroLink>
         <HeroLink href="https://www.instagram.com/questbeyondlabels/?hl=en">
           📷 Quest beyond labels
         </HeroLink>

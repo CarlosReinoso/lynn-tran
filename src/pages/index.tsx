@@ -2,9 +2,9 @@ import About from "@/components/About";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Offers from "@/components/Offers";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Link, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { projectId } from "@/constants";
+import { carlosEmailHref, projectId } from "@/constants";
 import { createClient } from "next-sanity";
 
 export interface ISanity {
@@ -53,6 +53,13 @@ export default function Home() {
         <About sanity={sanity} />
         <Offers sanity={sanity} sx={{ my: { xs: 0, lg: 4 } }} />
         <Footer sx={{ mt: 4, mb: 4 }} />
+        <Link
+          underline="none"
+          href={carlosEmailHref}
+          sx={{ textAlign: "right" }}
+        >
+          Website by Carlos Reinoso
+        </Link>
       </Stack>
     </>
   );
