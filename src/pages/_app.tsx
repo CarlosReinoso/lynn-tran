@@ -1,13 +1,13 @@
 import React from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
-import lightTheme from "@/styles/theme";
+import theme from "@/styles/theme";
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
 
   return (
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
